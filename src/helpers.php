@@ -21,3 +21,23 @@ if ( ! function_exists('t'))
         return $default;
     }
 }
+
+if ( ! function_exists('gravatar'))
+{
+    /**
+     * Get a user avatar from gravatar.com service.
+     * 
+     * @param  string   $email
+     * @param  integer  $size
+     * @param  string   $default
+     * @param  string   $rating
+     * @return string
+     */
+    function gravatar($email, $size = 100, $default = '', $rating = 'g')
+    {
+        $email = md5($email);
+        $size = is_int($size) ? $size : 100;
+
+        return "https://www.gravatar.com/avatar/{$email}?s={$size}&d={$default}&r={$rating}";
+    }
+}
