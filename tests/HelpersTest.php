@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class HelpersTest extends PHPUnit_Framework_TestCase
 {
@@ -35,5 +37,20 @@ class HelpersTest extends PHPUnit_Framework_TestCase
         $avatar = gravatar('test@email.com', 200, 'http://mysite.com/default.png', 'pg');
         $expected = "https://www.gravatar.com/avatar/93942e96f5acd83e2e047ad8fe03114d?s=200&d=http://mysite.com/default.png&r=pg";
         $this->assertSame($expected, $avatar); 
+    }
+
+    public function test_is_active()
+    {
+        Route::shouldReceive('currentRouteName')->once()->andReturn('about');
+        $this->assertEquals('active', isActive(['faq', 'about']));
+
+        Route::shouldReceive('currentRouteName')->once()->andReturn('home');
+        $this->assertEquals('active', isActive('home'));
+
+        URL::shouldReceive('current')->once()->andReturn('http://localhost:8000/about');
+        $this->assertEquals('custom-clas-name', isActive('about', 'custom-clas-name'));
+
+        Route::shouldReceive('currentRouteName')->once()->andReturn('news');
+        $this->assertEquals('', isActive('home'));
     }
 }
