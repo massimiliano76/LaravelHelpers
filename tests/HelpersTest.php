@@ -20,23 +20,23 @@ class HelpersTest extends PHPUnit_Framework_TestCase
     {
         $avatar = gravatar('test@email.com');
         $expected = "https://www.gravatar.com/avatar/93942e96f5acd83e2e047ad8fe03114d?s=100&d=&r=g";
-        $this->assertSame($expected, $avatar); 
+        $this->assertEquals($expected, $avatar); 
 
         $avatar = gravatar('test@email.com', 200);
         $expected = "https://www.gravatar.com/avatar/93942e96f5acd83e2e047ad8fe03114d?s=200&d=&r=g";
-        $this->assertSame($expected, $avatar); 
+        $this->assertEquals($expected, $avatar); 
 		
         $avatar = gravatar('test@email.com', 'not-a-valid-size');
         $expected = "https://www.gravatar.com/avatar/93942e96f5acd83e2e047ad8fe03114d?s=100&d=&r=g";
-        $this->assertSame($expected, $avatar); 
+        $this->assertEquals($expected, $avatar); 
         
         $avatar = gravatar('test@email.com', 100, '', 'pg');
         $expected = "https://www.gravatar.com/avatar/93942e96f5acd83e2e047ad8fe03114d?s=100&d=&r=pg";
-        $this->assertSame($expected, $avatar); 
+        $this->assertEquals($expected, $avatar); 
 		
         $avatar = gravatar('test@email.com', 200, 'http://mysite.com/default.png', 'pg');
         $expected = "https://www.gravatar.com/avatar/93942e96f5acd83e2e047ad8fe03114d?s=200&d=http://mysite.com/default.png&r=pg";
-        $this->assertSame($expected, $avatar); 
+        $this->assertEquals($expected, $avatar); 
     }
 
     public function test_is_active()
