@@ -9,9 +9,9 @@ if ( ! function_exists('t'))
     /**
      * Get a string from language file.
      *
-     * @param string  $string
-     * @param string  $default
-     * @param array   $parameters
+     * @param  string  $string
+     * @param  string  $default
+     * @param  array   $parameters
      * @return mixed
      */
     function t($string, $default = null, $parameters = [])
